@@ -10,4 +10,4 @@ fn main() {
 ```
 
 # Output
-[[]]
+![sample.png](sample.png)
