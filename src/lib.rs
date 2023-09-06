@@ -1,18 +1,35 @@
 #[macro_export]
 macro_rules! info {
-    ($target:expr) => (println!("\x1b[38;5;004m{}\x1b[m", $target))
+    ($target:expr, $($arg:tt)+) => {
+        println!("\x1b[38;5;004m{}\x1b[m", format!($target,  $($arg)+))
+    };
+
+    ($($arg:tt)+) => {
+        println!("\x1b[38;5;004m{}\x1b[m", format!("{}", $($arg)+))
+    };
 }
 
 #[macro_export]
 macro_rules! warn {
-    ($target:expr) => (println!("\x1b[38;5;220m{}\x1b[m", $target))
+    ($target:expr, $($arg:tt)+) => {
+        println!("\x1b[38;5;220m{}\x1b[m", format!($target,  $($arg)+))
+    };
+
+    ($($arg:tt)+) => {
+        println!("\x1b[38;5;220m{}\x1b[m", format!("{}", $($arg)+))
+    };
 }
 
 #[macro_export]
 macro_rules! error {
-    ($target:expr) => (println!("\x1b[38;5;124m{}\x1b[m", $target))
-}
+    ($target:expr, $($arg:tt)+) => {
+        println!("\x1b[38;5;124m{}\x1b[m", format!($target,  $($arg)+))
+    };
 
+    ($($arg:tt)+) => {
+        println!("\x1b[38;5;124m{}\x1b[m", format!("{}", $($arg)+))
+    };
+}
 
 
 #[cfg(test)]
@@ -21,8 +38,8 @@ mod tests {
     #[test]
     fn it_works() {
         info!("Hello World");
-        warn!("Hello World");
-        error!("Hello World");
+        warn!("Hello {}", "world");
+        error!("{} {} {}", "Hello", "World", "!");
     }
 
     // #[test]

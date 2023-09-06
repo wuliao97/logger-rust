@@ -1,11 +1,15 @@
 # Logger for Rust
+###### ver 0.1.1
+
+---
 
 # Usage
 ```rust
-fn main() {
+#[test]
+fn it_works() {
     info!("Hello World");
-    warn!("Hello World");
-    error!("Hello World");
+    warn!("Hello {}", "world");
+    error!("{} {} {}", "Hello", "World", "!");
 }
 ```
 
